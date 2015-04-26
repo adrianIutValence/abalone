@@ -8,5 +8,16 @@ package abalone;
  * @author amaglioa
  */
 public enum Direction {
-	N, S, NE, NW, SE, SW;
+	// TODO write a comment (technically speaking, even if it is boring, you should write one)
+	N, 
+	// TODO write a comment
+	S, 
+	// TODO write a comment
+	NE, 
+	// TODO write a comment
+	NW, 
+	// TODO write a comment
+	SE, 
+	// TODO write a comment
+	SW;
 }

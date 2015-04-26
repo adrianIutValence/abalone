@@ -1,5 +1,6 @@
 package abalone;
 
+// TODO it should be relevant to detail in the comment the coordinate system used on the board
 /**
  * Define the coordinates of a marble on the board
  */
@@ -9,11 +10,13 @@ public class Position {
 	 * Left coordinate
 	 */
 	private int left;
+	
 	/**
 	 * right coordinate
 	 */
 	private int right;
 	
+	// TODO fix comment (detail)
 	/**
 	 * Constructor
 	 * @param left coordinate
@@ -24,6 +27,7 @@ public class Position {
 		this.right = right;
 	}
 	
+	// TODO fix comment (tell chat makes position equals)
 	@Override
 	public boolean equals(Object obj) {
 		

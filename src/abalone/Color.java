@@ -1,9 +1,13 @@
 package abalone;
 
+//TODO write a comment
 /**
  * @author amaglioa
  *
  */
 public enum Color {
-	BLACK, WHITE;
+	// TODO write a comment
+	BLACK, 
+	// TODO write a comment
+	WHITE;
 }

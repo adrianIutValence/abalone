@@ -1,7 +1,7 @@
 /**
  * 
  */
-package abalone;
+package fr.iutvalence.info.m2103.project.tp1.abalone;
 
 /**
  * enumerates the possible movement directions of the marble

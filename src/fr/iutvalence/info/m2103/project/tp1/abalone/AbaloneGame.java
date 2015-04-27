@@ -1,22 +1,18 @@
-// TODO rename package to something less ambiguous (fr.iutvalence.info.m2103.project.abalone) sounds better
-
-package abalone;
+package fr.iutvalence.info.m2103.project.tp1.abalone;
 
 import java.util.HashMap;
 
 /**
  * Start and manage a game
- * @author amaglioa
+ * @author Arsac & Amaglio
  *
  */
 public class AbaloneGame {
 	
-	// TODO fix comment: do not describe the field declaration, just tells what it is (and explain why you use a map)
-	// TODO (think about it later) consider having a Board class
 	/**
-	 * Map object that stores the marbles references sorted with positions
+	 * The abalone board
 	 */
-	HashMap<Position, Marble> board;
+	Board board;
 	
 	// TODO fix comment: explain what a "ready to play game" looks like
 	/**

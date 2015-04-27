@@ -1,13 +1,15 @@
-package abalone;
+package fr.iutvalence.info.m2103.project.tp1.abalone;
 
 import java.util.HashMap;
 
 // TODO write a comment
 public class Marble {
 	
-	// TODO fix comment: this is not the color of all marbles, but just the color of one
+	private final static int MAX_PUSHABLE_MARBLE = 3;
+	private final static int MARBLE_POWER = 1;
+	
 	/**
-	 * Marbles color
+	 * Marble color
 	 */
 	private final Color color;
 	
@@ -26,25 +28,23 @@ public class Marble {
 	 *  
 	 * @param direction
 	 * @param power
-	 * @param attack true if marbles are pushing ennemy ones
+	 * @param attack : true if marbles are pushing ennemy ones
 	 * @return True if the marble can go in this direction. False else
 	 */
 	public boolean canGo(int direction, int power, boolean attack){
-		 
+				 
 		Marble nextMarble = this.nextMarble(direction);
 		
 		if(nextMarble.color != this.color){
 			if(attack) return false;
-			return nextMarble.canGo(direction, power - 1, true);
+			return nextMarble.canGo(direction, power - MARBLE_POWER, true);
 		}
 		
 		if(attack){
-			// TODO (think about it) it is not clear what 1 means, declare a constant 
-			if(power == 1) return false;
-				return nextMarble.canGo(direction, power - 1, attack);
+			if(power == MARBLE_POWER) return false;
+				return nextMarble.canGo(direction, power - MARBLE_POWER, attack);
 		}
-		// TODO (think about it) it is not clear what 3 means, declare a constant
-		if(power < 3) return nextMarble.canGo(direction, power + 1, attack);
+		if(power < MAX_PUSHABLE_MARBLE) return nextMarble.canGo(direction, power + MARBLE_POWER, attack);
 			return false;
 	}
 

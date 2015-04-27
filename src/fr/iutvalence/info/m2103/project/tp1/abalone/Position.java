@@ -1,4 +1,4 @@
-package abalone;
+package fr.iutvalence.info.m2103.project.tp1.abalone;
 
 // TODO it should be relevant to detail in the comment the coordinate system used on the board
 /**

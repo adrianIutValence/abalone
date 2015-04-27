@@ -1,13 +1,17 @@
 package fr.iutvalence.info.m2103.project.tp1.abalone;
 
-//TODO write a comment
+
 /**
- * @author amaglioa
- *
+ * Possibles marbles colors are defined here
+ * @author Amaglio & Arsac
  */
 public enum Color {
-	// TODO write a comment
+	/**
+	 * The black marble color
+	 */
 	BLACK, 
-	// TODO write a comment
+	/**
+	 * The white marble color
+	 */
 	WHITE;
 }

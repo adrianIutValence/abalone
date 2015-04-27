@@ -1,8 +1,18 @@
 package fr.iutvalence.info.m2103.project.tp1.abalone;
 
-// TODO it should be relevant to detail in the comment the coordinate system used on the board
+//TODO (done) it should be relevant to detail in the comment the coordinate system used on the board
 /**
  * Define the coordinates of a marble on the board
+ * 		 1 2 3 4 5
+ *    A O O O O O 6
+ *   B O O O O O O 7
+ *  C O O O O O O O 8
+ * D O O O O O O O O 9
+ *E O O O O O O O O O
+ * F O O O O O O O O
+ *  G O O O O O O O 
+ *   H O O O O O O
+ *    I O O O O O
  */
 public class Position {
 
@@ -16,18 +26,21 @@ public class Position {
 	 */
 	private int right;
 	
-	// TODO fix comment (detail)
+	// TODO (done) fix comment (detail)
 	/**
-	 * Constructor
-	 * @param left coordinate
-	 * @param right coordinate
+	 * Returns a new position with the specified coordinates
+	 * @param left Specify the left coordinate of the Position
+	 * @param right Specify the right coordinate of the Position
 	 */
 	public Position(int left, int right){
 		this.left = left;
 		this.right = right;
 	}
 	
-	// TODO fix comment (tell chat makes position equals)
+	// TODO (done) fix comment (tell chat makes position equals)
+	/**
+	 * Positions are equals if their coordinates are equals
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		

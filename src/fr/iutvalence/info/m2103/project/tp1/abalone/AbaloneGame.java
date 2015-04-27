@@ -1,44 +1,51 @@
 package fr.iutvalence.info.m2103.project.tp1.abalone;
 
-import java.util.HashMap;
-
 /**
  * Start and manage a game
+ * 
  * @author Arsac & Amaglio
  *
  */
 public class AbaloneGame {
-	
+
 	/**
 	 * The abalone board
 	 */
-	Board board;
-	
-	// TODO fix comment: explain what a "ready to play game" looks like
+	private Board board;
+
+	// TODO (done) fix comment: explain what a "ready to play game" looks like
 	/**
-	 * return a ready to play game
+	 * return a game with a sat up board with marbles
 	 */
-	public AbaloneGame(){
-		this.board = new HashMap<Position, Marble>();
-		this.setMarbles();
-		
+	public AbaloneGame() {
+		this.board = new Board();
+
 	}
 	
 	/**
-	 * place the marbles on the board
+	 * Create a board with specific marble's start location
+	 * @param preset Preset ID
 	 */
-	private void setMarbles(){
-		Position[] blackMarblesPosition = {new Position(7,5), new Position(7,6), new Position(7,7), new Position(8,4), new Position(8,5), new Position(8,6), new Position(8,7), new Position(8,8), new Position(8,9), new Position(9,5), new Position(9,6), new Position(9,7), new Position(9,8), new Position(9,9)};
-		Position[] whiteMarblesPosition = {new Position(1,1), new Position(1,2), new Position(1,3), new Position(1,4), new Position(1,5), new Position(2,1), new Position(2,2), new Position(2,3), new Position(2,4), new Position(2,5), new Position(2,6), new Position(3,3), new Position(3,4), new Position(3,5)};
-	
-		for(Position position : blackMarblesPosition){
-			board.put(position, new Marble(Color.BLACK));
+	public AbaloneGame(int preset){
+		this.board = new Board(preset);
+	}
+
+	@Override
+	/**
+	 * Display the board in ascii-art
+	 */
+	public String toString() {
+		String ret = "";
+		
+		for(int leftCoordinate = 1; leftCoordinate <= 9 ; leftCoordinate++){
+			for(int nbSpaces = 0; nbSpaces < 5-leftCoordinate%5;)
+				ret += ' ';
+			for(int rightCoordinate = 1; rightCoordinate <= 9; rightCoordinate++){
+				ret += "O ";
+			}
+			ret += "\n";
 		}
 		
-		for(Position position : whiteMarblesPosition){
-			board.put(position, new Marble(Color.WHITE));
-		}
+		return "blu";
 	}
-	
-	
 }

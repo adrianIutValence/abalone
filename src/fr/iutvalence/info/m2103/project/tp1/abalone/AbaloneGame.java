@@ -13,9 +13,8 @@ public class AbaloneGame {
 	 */
 	private Board board;
 
-	// TODO (done) fix comment: explain what a "ready to play game" looks like
 	/**
-	 * return a game with a sat up board with marbles
+	 * return a game with a set up board with marbles
 	 */
 	public AbaloneGame() {
 		this.board = new Board();
@@ -23,13 +22,14 @@ public class AbaloneGame {
 	}
 	
 	/**
-	 * Create a board with specific marble's start location
+	 * Create a board with specific marble's starting location
 	 * @param preset Preset ID
 	 */
 	public AbaloneGame(int preset){
 		this.board = new Board(preset);
 	}
-
+ 
+	// TODO finish implementing this method correctly
 	@Override
 	/**
 	 * Display the board in ascii-art

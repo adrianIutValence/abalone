@@ -1,16 +1,14 @@
 package fr.iutvalence.info.m2103.project.tp1.abalone;
 
-//TODO (done) write a comment
 /**
- * This Class launch the abalone game
+ * This class launches the abalone game
  * @author Amaglio & Arsac
  *
  */
 public class AbaloneLauncher {
 
-	// TODO (done) write a comment
 	/**
-	 * The main function that display the menu and allow the user to play creating an AbaloneGame object
+	 * The main function that displays the menu and allows the user to play creating an AbaloneGame object
 	 * @param args No command line args allowed yet
 	 */
 	public static void main(String[] args) {

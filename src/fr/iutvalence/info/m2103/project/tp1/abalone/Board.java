@@ -3,7 +3,7 @@ package fr.iutvalence.info.m2103.project.tp1.abalone;
 import java.util.HashMap;
 
 /**
- * This is the abalone board that manage the marble
+ * This is the abalone board that manages the marble
  * 
  * @author Amaglio & Arsac
  *
@@ -14,13 +14,13 @@ public class Board {
 	private final static int MARBLE_POWER = 1;
 	
 	/**
-	 * The abalone board It contains all the marbles location A map is used here
-	 * to store marble location only without allocate a compete table.
+	 * The abalone board contains all the marbles locations. A map is used here
+	 * to store marble locations only without allocating a complete table.
 	 */
 	private HashMap<Position, Marble> board;
 
 	/**
-	 * Sets the marbles in the classic start position
+	 * Sets the marbles in the classic starting position
 	 */
 	public Board() {
 		this.setMarblesFromPresetID(0);
@@ -57,9 +57,6 @@ public class Board {
 		}
 	}
 
-	// TODO (done) fix comment (incomplete)
-	// TODO (done) (think about it) this method should rather be placed in the game
-	// class
 	/**
 	 * Return True if the marble can go in the specified direction
 	 * @param direction One of Direction enumeration
@@ -87,10 +84,8 @@ public class Board {
 		return false;
 	}
 
-	// TODO (done) fix comment (incomplete)
-	// TODO Complete this function
 	/**
-	 * Give the marble next to "marble" in the specified direction
+	 * Give the marble next to this one in the specified direction
 	 * @param direction The direction to check
 	 * @return The marble or null
 	 */

@@ -1,6 +1,5 @@
 package fr.iutvalence.info.m2103.project.tp1.abalone;
 
-//TODO (done) it should be relevant to detail in the comment the coordinate system used on the board
 /**
  * Define the coordinates of a marble on the board
  * 		 1 2 3 4 5
@@ -33,7 +32,6 @@ public class Position {
 	 */
 	private int right;
 	
-	// TODO (done) fix comment (detail)
 	/**
 	 * Returns a new position with the specified coordinates
 	 * @param left Specify the left coordinate of the Position
@@ -43,8 +41,7 @@ public class Position {
 		this.left = left;
 		this.right = right;
 	}
-	
-	// TODO (done) fix comment (tell chat makes position equals)
+
 	/**
 	 * Positions are equals if their coordinates are equals
 	 */

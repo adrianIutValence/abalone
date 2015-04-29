@@ -127,4 +127,13 @@ public class Board {
 	public void put(Position position, Marble marble){
 		this.board.put(position, marble);		
 	}
+
+	/**
+	 * Return the marble at the given location
+	 * @param position
+	 * @return marble
+	 */
+	public Marble getMarble(Position position) {
+		return this.board.get(position);
+	}
 }

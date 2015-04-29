@@ -21,6 +21,15 @@ public class Marble {
 	public Color getColor(){
 		return this.color;
 	}
+
+	@Override
+	public String toString() {
+		if(this.color == Color.BLACK)
+			return "@";
+		return "O";
+	}
+	
+	
 	
 
 }

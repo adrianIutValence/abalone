@@ -12,37 +12,59 @@ public enum Direction {
 	// TODO (done) write a comment (technically speaking, even if it is boring,
 	// you should write one)
 	/**
-	 * North direction
+	 * Northern west direction
 	 */
-	N,
-
-	// TODO (done) write a comment
-	/**
-	 * South direction
-	 */
-	S,
+	NW(-1,-1),
 
 	// TODO (done) write a comment
 	/**
 	 * Northern east direction
 	 */
-	NE,
+	NE(-1,0),
 
 	// TODO (done) write a comment
 	/**
-	 * Northern west direction
+	 * East direction
 	 */
-	NW,
+	E(0,1),
 
 	// TODO (done) write a comment
 	/**
 	 * Southern east direction
 	 */
-	SE,
+	SE(1,1),
 
 	// TODO (done) write a comment
 	/**
 	 * Southern west direction
 	 */
-	SW;
+	SW(1,0),
+
+	// TODO (done) write a comment
+	/**
+	 * West direction
+	 */
+	W(0,-1);
+	
+	private final int leftDelta; 
+	private final int rightDelta;
+	
+	/**
+	 * @param leftDelta
+	 * @param rightDelta
+	 */
+	private Direction(int leftDelta, int rightDelta) {
+		this.leftDelta = leftDelta;
+		this.rightDelta = rightDelta;
+	}
+	
+	public int getLeftDelta() {
+		return leftDelta;
+	}
+	
+	public int getRightDelta() {
+		return rightDelta;
+	}
+	
+	
 }

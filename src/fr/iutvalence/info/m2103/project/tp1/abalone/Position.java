@@ -21,6 +21,13 @@ public class Position {
 	 */
 	private int left;
 	
+	public int getLeft() {
+		return left;
+	}
+
+	public int getRight() {
+		return right;
+	}
 	/**
 	 * right coordinate
 	 */

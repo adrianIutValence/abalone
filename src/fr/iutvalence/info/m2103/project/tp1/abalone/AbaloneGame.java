@@ -13,13 +13,15 @@ public class AbaloneGame {
 	 */
 	private Board board;
 
+	
+	
+	
 	// TODO (done) fix comment: explain what a "ready to play game" looks like
 	/**
 	 * return a game with a sat up board with marbles
 	 */
 	public AbaloneGame() {
-		this.board = new Board();
-
+		this.board = new Board(0);
 	}
 
 	/**
@@ -32,6 +34,9 @@ public class AbaloneGame {
 		this.board = new Board(preset);
 	}
 
+	
+	
+	
 	@Override
 	/**
 	 * Display the board in ascii-art

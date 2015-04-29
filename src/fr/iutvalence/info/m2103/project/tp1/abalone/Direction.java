@@ -9,46 +9,32 @@ package fr.iutvalence.info.m2103.project.tp1.abalone;
  * @author Amaglio & Arsac
  */
 public enum Direction {
-	// TODO (done) write a comment (technically speaking, even if it is boring,
-	// you should write one)
 	/**
-	 * Northern west direction
+	 * North direction Northern west direction
 	 */
-	NW(-1,-1),
+	NW(-1, -1),
 
-	// TODO (done) write a comment
-	/**
-	 * Northern east direction
-	 */
-	NE(-1,0),
+	NE(-1, 0),
 
 	// TODO (done) write a comment
 	/**
 	 * East direction
-	 */
-	E(0,1),
+	 * */
+	E(0, 1),
 
-	// TODO (done) write a comment
-	/**
-	 * Southern east direction
-	 */
-	SE(1,1),
+	SE(1, 1),
 
-	// TODO (done) write a comment
-	/**
-	 * Southern west direction
-	 */
-	SW(1,0),
+	SW(1, 0),
 
 	// TODO (done) write a comment
 	/**
 	 * West direction
 	 */
-	W(0,-1);
-	
-	private final int leftDelta; 
+	W(0, -1);
+
+	private final int leftDelta;
 	private final int rightDelta;
-	
+
 	/**
 	 * @param leftDelta
 	 * @param rightDelta
@@ -57,14 +43,12 @@ public enum Direction {
 		this.leftDelta = leftDelta;
 		this.rightDelta = rightDelta;
 	}
-	
+
 	public int getLeftDelta() {
 		return leftDelta;
 	}
-	
+
 	public int getRightDelta() {
 		return rightDelta;
 	}
-	
-	
 }

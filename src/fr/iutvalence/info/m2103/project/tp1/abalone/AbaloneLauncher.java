@@ -19,6 +19,7 @@ public class AbaloneLauncher {
 		AbaloneGame game = new AbaloneGame();
 		
 		System.out.print(game);
+		System.out.println(game.getBoard().canGo(new Position(1, 1), Direction.SE, 1, false));
 
 	}
 

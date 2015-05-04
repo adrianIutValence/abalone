@@ -41,6 +41,8 @@ public class Position {
 		this.left = left;
 		this.right = right;
 	}
+	
+
 
 	/**
 	 * Positions are equals if their coordinates are equals
@@ -62,4 +64,10 @@ public class Position {
 	public int hashCode() {
 		return this.left*10 + this.right;
 	}
+
+	@Override
+	public String toString() {
+		return "(" + this.left + ", " + this.right + ")";
+	}
+	
 }

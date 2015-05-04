@@ -14,6 +14,10 @@ public class AbaloneGame {
 	private Board board;
 
 
+	public Board getBoard() {
+		return board;
+	}
+
 	/**
 	 * return a game with a set up board with marbles
 	 */

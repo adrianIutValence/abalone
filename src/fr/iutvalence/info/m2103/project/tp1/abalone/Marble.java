@@ -7,6 +7,7 @@ public class Marble {
 	 */
 	private final Color color;
 	
+	// TODO detail comment (how is the marble built?)
 	/**
 	 * Create a marble
 	 * @param color The marble color
@@ -15,6 +16,7 @@ public class Marble {
 		this.color = color;
 	}
 	
+	// TODO finish writing comment (return tag)
 	/**
 	 * Return the marble color
 	 */
@@ -28,8 +30,4 @@ public class Marble {
 			return "@";
 		return "O";
 	}
-	
-	
-	
-
 }

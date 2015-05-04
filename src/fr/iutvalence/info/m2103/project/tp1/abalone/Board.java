@@ -10,7 +10,10 @@ import java.util.HashMap;
  */
 public class Board {
 	
+	// TODO write a comment
 	private final static int MAX_PUSHABLE_MARBLE = 3;
+	
+	// TODO write a comment
 	private final static int MARBLE_POWER = 1;
 	
 	/**
@@ -35,6 +38,7 @@ public class Board {
 		this.setMarblesFromPresetID(presetId);
 	}
 
+	// TODO finish writing comment
 	/**
 	 * @param preset
 	 */

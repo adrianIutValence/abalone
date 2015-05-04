@@ -37,6 +37,7 @@ public class AbaloneGame {
 	public String toString() {
 		String ret = "";
 
+		// TODO replace hard-coded numbers with constants if possible
 		for (int leftCoordinate = 1; leftCoordinate <= 5; leftCoordinate++) {
 			for (int nbSpaces = 0; nbSpaces < 5 - leftCoordinate; nbSpaces++)
 				ret += " ";

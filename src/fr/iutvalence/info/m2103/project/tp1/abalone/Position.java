@@ -20,13 +20,6 @@ public class Position {
 	 */
 	private int left;
 	
-	public int getLeft() {
-		return left;
-	}
-
-	public int getRight() {
-		return right;
-	}
 	/**
 	 * right coordinate
 	 */
@@ -40,6 +33,17 @@ public class Position {
 	public Position(int left, int right){
 		this.left = left;
 		this.right = right;
+	}
+	
+	
+	// TODO write a comment
+	public int getLeft() {
+		return left;
+	}
+
+	// TODO write a comment
+	public int getRight() {
+		return right;
 	}
 
 	/**

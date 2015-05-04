@@ -20,13 +20,6 @@ public class Position {
 	 */
 	private int left;
 	
-	public int getLeft() {
-		return left;
-	}
-
-	public int getRight() {
-		return right;
-	}
 	/**
 	 * right coordinate
 	 */
@@ -42,7 +35,20 @@ public class Position {
 		this.right = right;
 	}
 	
+<<<<<<< HEAD
 
+=======
+	
+	// TODO write a comment
+	public int getLeft() {
+		return left;
+	}
+
+	// TODO write a comment
+	public int getRight() {
+		return right;
+	}
+>>>>>>> refs/remotes/origin/master
 
 	/**
 	 * Positions are equals if their coordinates are equals

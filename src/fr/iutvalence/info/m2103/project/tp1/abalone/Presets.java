@@ -11,6 +11,7 @@ package fr.iutvalence.info.m2103.project.tp1.abalone;
  */
 public class Presets {
 
+	// TODO write a comment
 	private final static Preset[] PRESETS = new Preset[] {
 			new Preset(new Position[] { new Position(1, 1), new Position(1, 2),
 					new Position(1, 3), new Position(1, 4), new Position(1, 5),
@@ -88,6 +89,7 @@ public class Presets {
 
 	};
 
+	// TODO write a comment
 	public static Preset preset(int id) {
 		return PRESETS[id];
 	}

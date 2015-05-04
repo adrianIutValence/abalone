@@ -11,7 +11,10 @@ public enum Direction {
 	 */
 	NW(-1, -1),
 
-	// TODO write a comment ;-)
+	// TODO (done :3)write a comment ;-)
+	/**
+	 * Northern East direction
+	 * */
 	NE(-1, 0),
 
 	/**
@@ -19,10 +22,16 @@ public enum Direction {
 	 * */
 	E(0, 1),
 
-	// TODO write a comment ;-)
+	// TODO (done :3)write a comment ;-)
+	/**
+	 * Southern East direction
+	 * */
 	SE(1, 1),
 
-	// TODO write a comment ;-)
+	// TODO (done :3)write a comment ;-)
+	/**
+	 * Southern West direction
+	 * */
 	SW(1, 0),
 
 	/**
@@ -30,14 +39,21 @@ public enum Direction {
 	 */
 	W(0, -1);
 
-	// TODO write a comment
+	// TODO (done) write a comment
+	/**
+	 * Left coordinate difference for the marble that will go in this direction
+	 */
 	private final int leftDelta;
 	
-	// TODO write a comment
+	// TODO (done) write a comment
+	/**
+	 * Left coordinate difference for the marble that will go in this direction
+	 */
 	private final int rightDelta;
 
 	// TODO finish writing comment
 	/**
+	 * 
 	 * @param leftDelta
 	 * @param rightDelta
 	 */

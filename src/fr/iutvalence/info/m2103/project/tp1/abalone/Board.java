@@ -9,12 +9,8 @@ import java.util.HashMap;
  *
  */
 public class Board {
-<<<<<<< HEAD
-
-=======
 	
 	// TODO write a comment
->>>>>>> refs/remotes/origin/master
 	private final static int MAX_PUSHABLE_MARBLE = 3;
 	
 	// TODO write a comment
@@ -43,8 +39,9 @@ public class Board {
 		this.setMarblesFromPresetID(presetId);
 	}
 
-	// TODO finish writing comment
+	// TODO (done) finish writing comment
 	/**
+	 * Set marbles on the board depending of the coordinates stored in the wanted preset
 	 * @param preset
 	 */
 	private void setMarblesFromPresetID(int presetId) {
@@ -79,19 +76,20 @@ public class Board {
 	 * @return True if the marble can go in this direction. False else
 	 */
 	public boolean canGo(Position position, Direction direction, int power,
-			boolean attack) {
+			boolean attack) throws NoMarbleFound{
+		//If there is no marble at this position
+		if(this.getMarble(position) == null)
+			throw new NoMarbleFound();
 
 		Position nextMarblePosition = this.nextMarblePosition(position,
 				direction);
 
 		//if no marble detected
 		if(this.getMarble(nextMarblePosition) == null){
-			if(attack ){
-				if(power >= 1)
-					return true;
-				return false;
+			if(attack){
+				return power >= 1;
 			}
-			if (power <= MAX_PUSHABLE_MARBLE & this.outOfBoard(nextMarblePosition))
+			if (power <= MAX_PUSHABLE_MARBLE && this.onTheBoard(nextMarblePosition))
 				return true;
 			return false;
 		}
@@ -116,15 +114,38 @@ public class Board {
 					+ MARBLE_POWER, attack);
 		return false;
 	}
+	
+	//TOUT DOUX
+	public void move(Position marblePosition, Direction direction) throws NoMarbleFound{
+		if (!canGo(marblePosition, direction, 1, false))
+			return;
+		
+		
+		Marble marbleToMove = this.getMarble(nextMarblePosition(marblePosition, direction));
+		removeMarble(marblePosition);
+		while(this.getMarble(nextMarblePosition(marblePosition, direction)) != null){
+			
+		}
+	}
+	
+
+	/**
+	 * @param marblePosition
+	 */
+	private void removeMarble(Position position) {
+		this.board.remove(position);
+		
+	}
 
 	/**
 	 * @param nextMarblePosition
 	 * @return
 	 */
-	private boolean outOfBoard(Position position) {
+	private boolean onTheBoard(Position position) {
 		Position[] list = Presets.preset(0).getWhiteMarbles();
 		for (Position positionToTest : list){
-			if(position == positionToTest)
+			//System.out.println(positionToTest + " " + position);
+			if(position.equals(positionToTest))
 				return true;
 		}
 		return false;

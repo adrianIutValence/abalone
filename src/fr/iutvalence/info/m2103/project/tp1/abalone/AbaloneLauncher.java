@@ -19,7 +19,11 @@ public class AbaloneLauncher {
 		AbaloneGame game = new AbaloneGame();
 		
 		System.out.print(game);
-		System.out.println(game.getBoard().canGo(new Position(1, 1), Direction.SE, 1, false));
+		try {
+			System.out.println(game.getBoard().canGo(new Position(2, 1), Direction.E, 1, false));
+		} catch (NoMarbleFound e) {
+			System.out.println("NoMarbleFound Exception");
+		}
 
 	}
 

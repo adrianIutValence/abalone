@@ -22,7 +22,7 @@ public class AbaloneGame {
 	 * return a game with a set up board with marbles
 	 */
 	public AbaloneGame() {
-		this.board = new Board(0);
+		this.board = new Board(1);
 	}
 
 	/**

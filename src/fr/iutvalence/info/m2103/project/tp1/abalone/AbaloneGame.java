@@ -22,7 +22,7 @@ public class AbaloneGame {
 	 * return a game with a set up board with marbles
 	 */
 	public AbaloneGame() {
-		this.board = new Board(1);
+		this.board = new Board(0);
 	}
 
 	/**
@@ -71,4 +71,14 @@ public class AbaloneGame {
 
 		return ret;
 	}
+
+	/**
+	 * @return
+	 */
+	public boolean won() {
+		if(this.board.blackMarbles() < this.board.MAX_MARBLES)
+		int whiteMarbles
+		return false;
+	}
+
 }

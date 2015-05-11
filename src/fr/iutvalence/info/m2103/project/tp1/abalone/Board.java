@@ -1,6 +1,9 @@
 package fr.iutvalence.info.m2103.project.tp1.abalone;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * This is the abalone board that manages the marble
@@ -9,10 +12,10 @@ import java.util.HashMap;
  *
  */
 public class Board {
-	
+
 	// TODO write a comment
 	private final static int MAX_PUSHABLE_MARBLE = 3;
-	
+
 	// TODO write a comment
 	private final static int MARBLE_POWER = 1;
 
@@ -22,11 +25,14 @@ public class Board {
 	 */
 	private HashMap<Position, Marble> board;
 
+	private Set<Position> validPositions;
+
 	/**
 	 * Sets the marbles in the classic starting position
 	 */
 	public Board() {
 		this.setMarblesFromPresetID(1);
+		this.init();
 	}
 
 	/**
@@ -37,11 +43,83 @@ public class Board {
 	 */
 	public Board(int presetId) {
 		this.setMarblesFromPresetID(presetId);
+		this.init();
+	}
+
+	/**
+	 * 
+	 */
+	private void init() {
+
+		validPositions = new HashSet<Position>();
+		validPositions.add(new Position(1, 1));
+		validPositions.add(new Position(1, 2));
+		validPositions.add(new Position(1, 3));
+		validPositions.add(new Position(1, 4));
+		validPositions.add(new Position(1, 5));
+		validPositions.add(new Position(2, 1));
+		validPositions.add(new Position(2, 2));
+		validPositions.add(new Position(2, 3));
+		validPositions.add(new Position(2, 4));
+		validPositions.add(new Position(2, 5));
+		validPositions.add(new Position(2, 6));
+		validPositions.add(new Position(3, 1));
+		validPositions.add(new Position(3, 2));
+		validPositions.add(new Position(3, 3));
+		validPositions.add(new Position(3, 4));
+		validPositions.add(new Position(3, 5));
+		validPositions.add(new Position(3, 6));
+		validPositions.add(new Position(3, 7));
+		validPositions.add(new Position(4, 1));
+		validPositions.add(new Position(4, 2));
+		validPositions.add(new Position(4, 3));
+		validPositions.add(new Position(4, 4));
+		validPositions.add(new Position(4, 5));
+		validPositions.add(new Position(4, 6));
+		validPositions.add(new Position(4, 7));
+		validPositions.add(new Position(4, 8));
+		validPositions.add(new Position(5, 1));
+		validPositions.add(new Position(5, 2));
+		validPositions.add(new Position(5, 3));
+		validPositions.add(new Position(5, 4));
+		validPositions.add(new Position(5, 5));
+		validPositions.add(new Position(5, 6));
+		validPositions.add(new Position(5, 7));
+		validPositions.add(new Position(5, 8));
+		validPositions.add(new Position(5, 9));
+		validPositions.add(new Position(6, 2));
+		validPositions.add(new Position(6, 3));
+		validPositions.add(new Position(6, 4));
+		validPositions.add(new Position(6, 5));
+		validPositions.add(new Position(6, 6));
+		validPositions.add(new Position(6, 7));
+		validPositions.add(new Position(6, 8));
+		validPositions.add(new Position(6, 9));
+		validPositions.add(new Position(7, 3));
+		validPositions.add(new Position(7, 4));
+		validPositions.add(new Position(7, 5));
+		validPositions.add(new Position(7, 6));
+		validPositions.add(new Position(7, 7));
+		validPositions.add(new Position(7, 8));
+		validPositions.add(new Position(7, 9));
+		validPositions.add(new Position(8, 4));
+		validPositions.add(new Position(8, 5));
+		validPositions.add(new Position(8, 6));
+		validPositions.add(new Position(8, 7));
+		validPositions.add(new Position(8, 8));
+		validPositions.add(new Position(8, 9));
+		validPositions.add(new Position(9, 5));
+		validPositions.add(new Position(9, 6));
+		validPositions.add(new Position(9, 7));
+		validPositions.add(new Position(9, 8));
+		validPositions.add(new Position(9, 9));
 	}
 
 	// TODO (done) finish writing comment
 	/**
-	 * Set marbles on the board depending of the coordinates stored in the wanted preset
+	 * Set marbles on the board depending of the coordinates stored in the
+	 * wanted preset
+	 * 
 	 * @param preset
 	 */
 	private void setMarblesFromPresetID(int presetId) {
@@ -76,24 +154,24 @@ public class Board {
 	 * @return True if the marble can go in this direction. False else
 	 */
 	public boolean canGo(Position position, Direction direction, int power,
-			boolean attack) throws NoMarbleFound{
-		//If there is no marble at this position
-		if(this.getMarble(position) == null)
+			boolean attack) throws NoMarbleFound {
+		// If there is no marble at this position
+		if (this.getMarble(position) == null)
 			throw new NoMarbleFound();
 
 		Position nextMarblePosition = this.nextMarblePosition(position,
 				direction);
 
-		//if no marble detected
-		if(this.getMarble(nextMarblePosition) == null){
-			if(attack){
+		// if no marble detected
+		if (this.getMarble(nextMarblePosition) == null) {
+			if (attack) {
 				return power >= 1;
 			}
-			if (power <= MAX_PUSHABLE_MARBLE && this.onTheBoard(nextMarblePosition))
+			if (power <= MAX_PUSHABLE_MARBLE
+					&& this.onTheBoard(nextMarblePosition))
 				return true;
 			return false;
 		}
-		
 
 		if (this.getMarble(nextMarblePosition).getColor() != this.getMarble(
 				position).getColor()) {
@@ -114,27 +192,34 @@ public class Board {
 					+ MARBLE_POWER, attack);
 		return false;
 	}
-	
-	//TOUT DOUX
-	public void move(Position marblePosition, Direction direction) throws NoMarbleFound{
+
+	public void move(Position marblePosition, Direction direction)
+			throws NoMarbleFound {
 		if (!canGo(marblePosition, direction, 1, false))
 			return;
-		
-		
-		Marble marbleToMove = this.getMarble(nextMarblePosition(marblePosition, direction));
-		removeMarble(marblePosition);
-		while(this.getMarble(nextMarblePosition(marblePosition, direction)) != null){
-			
+
+		Marble marbleToPlace = null, marbleToReplace;
+		Position currentPosition = marblePosition;
+
+		while (this.getMarble(currentPosition) != null) {
+			marbleToReplace = this.getMarble(currentPosition);
+			this.removeMarble(marblePosition);
+			this.put(currentPosition, marbleToPlace);
+			marbleToPlace = marbleToReplace;
+
+			currentPosition = this.nextMarblePosition(currentPosition,
+					direction);
+
 		}
+		this.put(currentPosition, marbleToPlace);
 	}
-	
 
 	/**
 	 * @param marblePosition
 	 */
 	private void removeMarble(Position position) {
 		this.board.remove(position);
-		
+
 	}
 
 	/**
@@ -142,13 +227,7 @@ public class Board {
 	 * @return
 	 */
 	private boolean onTheBoard(Position position) {
-		Position[] list = Presets.preset(0).getWhiteMarbles();
-		for (Position positionToTest : list){
-			//System.out.println(positionToTest + " " + position);
-			if(position.equals(positionToTest))
-				return true;
-		}
-		return false;
+		return this.validPositions.contains(position);
 	}
 
 	/**
@@ -172,6 +251,8 @@ public class Board {
 	 *            The marble
 	 */
 	public void put(Position position, Marble marble) {
+		if (marble == null)
+			return;
 		this.board.put(position, marble);
 	}
 

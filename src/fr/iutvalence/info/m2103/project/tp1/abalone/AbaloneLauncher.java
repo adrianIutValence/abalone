@@ -18,24 +18,27 @@ public class AbaloneLauncher {
 	public static void main(String[] args) {
 		System.out.println("Bienvenue dans Abalone!");
 		System.out.println("\n1.Nouvelle partie");
-		
+
 		// TODO fix implementation: a game is not supposed to be played?
 		AbaloneGame game = new AbaloneGame();
-		Player[] players = new Player[]{new Player(Color.BLACK), new Player(Color.WHITE)};
+		Player[] players = new Player[] { new Player(Color.BLACK),
+				new Player(Color.WHITE) };
+		Player winner;
 		int turn = 1;
-		Mouvement mouvement;
-		
-		while(!game.won()){
-			do{
-			mouvement = players[turn%2].waitAction();
-			}while(!game.getBoard().isMouvementValid(mouvement, player[turn%2]));
-			
+		Movement mouvement;
+
+		do {
+			winner = game.won(players);
+
+			do {
+				mouvement = players[turn % Player.PLAYERS_NUMBER].waitAction();
+			} while (!game.getBoard().isMouvementValid(mouvement,
+					players[turn % Player.PLAYERS_NUMBER]));
+
 			game.getBoard().move(mouvement);
-			turn ++;
-		}
-		
-		
-		System.out.println(game);
+			System.out.println(game);
+			turn++;
+		} while (winner == null);
 
 	}
 }

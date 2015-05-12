@@ -12,11 +12,28 @@ import java.util.Set;
  */
 public class Board {
 
-	// TODO write a comment
+	// TODO (done) write a comment
+	/**
+	 * The maximum friendly marbles it is possible to push at the same time
+	 */
 	private final static int MAX_PUSHABLE_MARBLE = 3;
 
-	// TODO write a comment
+	// TODO (done) write a comment
+	/**
+	 * The power amout that a marble provide to a pushing group
+	 */
 	private final static int MARBLE_POWER = 1;
+
+	/**
+	 * The amount of marble a player have to push out to win
+	 */
+	public static final int MARBLES_TO_WIN = 6;
+	
+	
+	/**
+	 * The maximum marble a player got on the board
+	 */
+	public static final int MAX_MARBLES = 14;
 
 	/**
 	 * The abalone board contains all the marbles locations. A map is used here
@@ -152,7 +169,7 @@ public class Board {
 	 *            false)
 	 * @return True if the marble can go in this direction. False else
 	 */
-	public boolean canGo(Mouvement mouvement, int power, boolean attack)
+	public boolean canGo(Movement mouvement, int power, boolean attack)
 			throws NoMarbleFound {
 		if (mouvement.getPositions().size() != 1) {
 			for (Position position : mouvement.getPositions()) {
@@ -164,7 +181,7 @@ public class Board {
 			}
 			return true;
 		} else {
-			Position position = mouvement.getPositions()[0];
+			Position position = mouvement.getFirstPosition();
 			Direction direction = mouvement.getDirection();
 
 			// If there is no marble at this position
@@ -203,7 +220,7 @@ public class Board {
 		}
 	}
 
-	public void move(Mouvement mouvement) throws NoMarbleFound {
+	public void move(Movement mouvement) throws NoMarbleFound {
 
 		if (!canGo(mouvement, 1, false))
 			return;
@@ -218,7 +235,7 @@ public class Board {
 			}
 		} else {
 			
-			Position marblePosition = mouvement.getPositions()[0];
+			Position marblePosition = mouvement.getFirstPosition();
 
 			Marble marbleToPlace = null, marbleToReplace;
 			Position currentPosition = marblePosition;
@@ -253,7 +270,9 @@ public class Board {
 		return this.validPositions.contains(position);
 	}
 	
-	public boolean isMouvementValid(Mouvement mouvement, Player player){
+	public boolean isMouvementValid(Movement mouvement, Player player){
+		if(mouvement == null)
+			return false;
 		for(Position position : mouvement.getPositions()){
 			if(this.getMarble(position).getColor() != player.getColor())
 				return false;
@@ -297,5 +316,18 @@ public class Board {
 	 */
 	public Marble getMarble(Position position) {
 		return this.board.get(position);
+	}
+
+	/**
+	 * Count the blacks marbles on the board in the color in parameter
+	 * @return the marbles number
+	 */
+	public int countMarbles(Color color) {
+		int number = 0;
+		for(Marble marble: this.board.values()){
+			if(marble.getColor() == color)
+				number++;
+		}
+		return number;
 	}
 }

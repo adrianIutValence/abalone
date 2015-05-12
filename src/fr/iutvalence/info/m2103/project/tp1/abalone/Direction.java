@@ -79,7 +79,19 @@ public enum Direction {
 	 * @return the direction that correspond to the param str
 	 */
 	public static Direction fromStr(String string) {
-		// TODO Auto-generated method stub
+		//The case statement does not compare String objects
+		if(string.equals("NE"))
+			return NE;
+		else if(string.equals("NW"))
+			return NW;
+		else if(string.equals("SE"))
+			return SE;
+		else if(string.equals("SW"))
+			return SW;
+		else if(string.equals("E"))
+			return E;
+		else if(string.equals("W"))
+			return SW;
 		return null;
 	}
 

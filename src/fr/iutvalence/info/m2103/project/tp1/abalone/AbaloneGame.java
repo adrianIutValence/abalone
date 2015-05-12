@@ -73,12 +73,15 @@ public class AbaloneGame {
 	}
 
 	/**
-	 * @return
+	 * Test if a game is won
+	 * @return the player that won the game
 	 */
-	public boolean won() {
-		if(this.board.blackMarbles() < this.board.MAX_MARBLES)
-		int whiteMarbles
-		return false;
+	public Player won(Player[] players) {
+		for(int count = 0; count< players.length; count++){
+			if(this.board.countMarbles(players[count].getColor()) < this.board.MAX_MARBLES - this.board.MARBLES_TO_WIN)
+				return players[count%Player.PLAYERS_NUMBER];
+		}
+		return null;
 	}
 
 }

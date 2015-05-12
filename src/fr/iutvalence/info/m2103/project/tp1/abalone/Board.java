@@ -3,7 +3,6 @@ package fr.iutvalence.info.m2103.project.tp1.abalone;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * This is the abalone board that manages the marble
@@ -153,65 +152,89 @@ public class Board {
 	 *            false)
 	 * @return True if the marble can go in this direction. False else
 	 */
-	public boolean canGo(Position position, Direction direction, int power,
-			boolean attack) throws NoMarbleFound {
-		// If there is no marble at this position
-		if (this.getMarble(position) == null)
-			throw new NoMarbleFound();
-
-		Position nextMarblePosition = this.nextMarblePosition(position,
-				direction);
-
-		// if no marble detected
-		if (this.getMarble(nextMarblePosition) == null) {
-			if (attack) {
-				return power >= 1;
-			}
-			if (power <= MAX_PUSHABLE_MARBLE
-					&& this.onTheBoard(nextMarblePosition))
-				return true;
-			return false;
-		}
-
-		if (this.getMarble(nextMarblePosition).getColor() != this.getMarble(
-				position).getColor()) {
-			if (attack)
-				return false;
-			return this.canGo(nextMarblePosition, direction, power
-					- MARBLE_POWER, true);
-		}
-
-		if (attack) {
-			if (power <= MARBLE_POWER)
-				return false;
-			return this.canGo(nextMarblePosition, direction, power
-					- MARBLE_POWER, attack);
-		}
-		if (power < MAX_PUSHABLE_MARBLE)
-			return this.canGo(nextMarblePosition, direction, power
-					+ MARBLE_POWER, attack);
-		return false;
-	}
-
-	public void move(Position marblePosition, Direction direction)
+	public boolean canGo(Mouvement mouvement, int power, boolean attack)
 			throws NoMarbleFound {
-		if (!canGo(marblePosition, direction, 1, false))
-			return;
+		if (mouvement.getPositions().size() != 1) {
+			for (Position position : mouvement.getPositions()) {
+				if (this.getMarble(this.nextMarblePosition(position,
+						mouvement.getDirection())) != null
+						&& !this.onTheBoard(this.nextMarblePosition(position,
+								mouvement.getDirection())))
+					return false;
+			}
+			return true;
+		} else {
+			Position position = mouvement.getPositions()[0];
+			Direction direction = mouvement.getDirection();
 
-		Marble marbleToPlace = null, marbleToReplace;
-		Position currentPosition = marblePosition;
+			// If there is no marble at this position
+			if (this.getMarble(position) == null)
+				throw new NoMarbleFound();
 
-		while (this.getMarble(currentPosition) != null) {
-			marbleToReplace = this.getMarble(currentPosition);
-			this.removeMarble(marblePosition);
-			this.put(currentPosition, marbleToPlace);
-			marbleToPlace = marbleToReplace;
-
-			currentPosition = this.nextMarblePosition(currentPosition,
+			Position nextMarblePosition = this.nextMarblePosition(position,
 					direction);
 
+			// if no marble detected
+			if (this.getMarble(nextMarblePosition) == null) {
+				if (attack) {
+					return power >= 1;
+				}
+				if (power <= MAX_PUSHABLE_MARBLE
+						&& this.onTheBoard(nextMarblePosition))
+					return true;
+				return false;
+			}
+
+			if (this.getMarble(nextMarblePosition).getColor() != this
+					.getMarble(position).getColor()) {
+				if (attack)
+					return false;
+				return this.canGo(mouvement, power - MARBLE_POWER, true);
+			}
+
+			if (attack) {
+				if (power <= MARBLE_POWER)
+					return false;
+				return this.canGo(mouvement, power - MARBLE_POWER, attack);
+			}
+			if (power < MAX_PUSHABLE_MARBLE)
+				return this.canGo(mouvement, power + MARBLE_POWER, attack);
+			return false;
 		}
-		this.put(currentPosition, marbleToPlace);
+	}
+
+	public void move(Mouvement mouvement) throws NoMarbleFound {
+
+		if (!canGo(mouvement, 1, false))
+			return;
+
+		if (mouvement.getPositions().size() != 1) {
+			for (Position position : mouvement.getPositions()) {
+				this.put(
+						this.nextMarblePosition(position,
+								mouvement.getDirection()),
+						this.getMarble(position));
+				this.removeMarble(position);
+			}
+		} else {
+			
+			Position marblePosition = mouvement.getPositions()[0];
+
+			Marble marbleToPlace = null, marbleToReplace;
+			Position currentPosition = marblePosition;
+
+			while (this.getMarble(currentPosition) != null) {
+				marbleToReplace = this.getMarble(currentPosition);
+				this.removeMarble(marblePosition);
+				this.put(currentPosition, marbleToPlace);
+				marbleToPlace = marbleToReplace;
+
+				currentPosition = this.nextMarblePosition(currentPosition,
+						mouvement.getDirection());
+
+			}
+			this.put(currentPosition, marbleToPlace);
+		}
 	}
 
 	/**
@@ -228,6 +251,16 @@ public class Board {
 	 */
 	private boolean onTheBoard(Position position) {
 		return this.validPositions.contains(position);
+	}
+	
+	public boolean isMouvementValid(Mouvement mouvement, Player player){
+		for(Position position : mouvement.getPositions()){
+			if(this.getMarble(position).getColor() != player.getColor())
+				return false;
+		}
+		
+		
+		return true;
 	}
 
 	/**

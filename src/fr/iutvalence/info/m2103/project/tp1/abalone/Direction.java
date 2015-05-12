@@ -71,4 +71,16 @@ public enum Direction {
 	public int getRightDelta() {
 		return rightDelta;
 	}
+
+	/**
+	 * Convert a String in a direction. The string have to be equals to the constant name.
+	 * Example : fromStr(new String("NE")) returns Direction.NE
+	 * @param string
+	 * @return the direction that correspond to the param str
+	 */
+	public static Direction fromStr(String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

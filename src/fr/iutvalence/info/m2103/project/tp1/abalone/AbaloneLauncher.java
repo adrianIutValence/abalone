@@ -21,10 +21,17 @@ public class AbaloneLauncher {
 		
 		// TODO fix implementation: a game is not supposed to be played?
 		AbaloneGame game = new AbaloneGame();
-		Player blackPlayer = new Player(Color.BLACK), WhitePlayer = new Player(Color.WHITE);
+		Player[] players = new Player[]{new Player(Color.BLACK), new Player(Color.WHITE)};
+		int turn = 1;
+		Mouvement mouvement;
 		
 		while(!game.won()){
+			do{
+			mouvement = players[turn%2].waitAction();
+			}while(!game.getBoard().isMouvementValid(mouvement, player[turn%2]));
 			
+			game.getBoard().move(mouvement);
+			turn ++;
 		}
 		
 		

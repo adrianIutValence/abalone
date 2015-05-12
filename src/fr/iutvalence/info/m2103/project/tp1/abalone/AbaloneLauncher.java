@@ -30,13 +30,17 @@ public class AbaloneLauncher {
 		do {
 			winner = game.won(players);
 
+			System.out.println(game);
 			do {
 				mouvement = players[turn % Player.PLAYERS_NUMBER].waitAction();
 			} while (!game.getBoard().isMouvementValid(mouvement,
 					players[turn % Player.PLAYERS_NUMBER]));
 
-			game.getBoard().move(mouvement);
-			System.out.println(game);
+			try {
+				game.getBoard().move(mouvement);
+			} catch (NoMarbleFound e) {
+				e.printStackTrace();
+			}
 			turn++;
 		} while (winner == null);
 

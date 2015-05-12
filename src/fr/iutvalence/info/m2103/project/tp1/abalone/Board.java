@@ -169,20 +169,24 @@ public class Board {
 	 *            false)
 	 * @return True if the marble can go in this direction. False else
 	 */
-	public boolean canGo(Movement mouvement, int power, boolean attack)
+	public boolean canGo(Movement movement, int power, boolean attack)
 			throws NoMarbleFound {
-		if (mouvement.getPositions().size() != 1) {
-			for (Position position : mouvement.getPositions()) {
+
+		if(movement == null)
+			return false;
+		
+		if (movement.getPositions().size() != 1) {
+			for (Position position : movement.getPositions()) {
 				if (this.getMarble(this.nextMarblePosition(position,
-						mouvement.getDirection())) != null
+						movement.getDirection())) != null
 						&& !this.onTheBoard(this.nextMarblePosition(position,
-								mouvement.getDirection())))
+								movement.getDirection())))
 					return false;
 			}
 			return true;
 		} else {
-			Position position = mouvement.getFirstPosition();
-			Direction direction = mouvement.getDirection();
+			Position position = movement.getFirstPosition();
+			Direction direction = movement.getDirection();
 
 			// If there is no marble at this position
 			if (this.getMarble(position) == null)
@@ -191,8 +195,10 @@ public class Board {
 			Position nextMarblePosition = this.nextMarblePosition(position,
 					direction);
 
+			
 			// if no marble detected
 			if (this.getMarble(nextMarblePosition) == null) {
+
 				if (attack) {
 					return power >= 1;
 				}
@@ -206,48 +212,47 @@ public class Board {
 					.getMarble(position).getColor()) {
 				if (attack)
 					return false;
-				return this.canGo(mouvement, power - MARBLE_POWER, true);
+				return this.canGo(movement.setPosition(nextMarblePosition), power - MARBLE_POWER, true);
 			}
 
 			if (attack) {
 				if (power <= MARBLE_POWER)
 					return false;
-				return this.canGo(mouvement, power - MARBLE_POWER, attack);
+				return this.canGo(movement.setPosition(nextMarblePosition), power - MARBLE_POWER, attack);
 			}
+
 			if (power < MAX_PUSHABLE_MARBLE)
-				return this.canGo(mouvement, power + MARBLE_POWER, attack);
+				return this.canGo(movement.setPosition(nextMarblePosition), power + MARBLE_POWER, attack);
 			return false;
 		}
 	}
 
-	public void move(Movement mouvement) throws NoMarbleFound {
+	public void move(Movement movement) throws NoMarbleFound {
 
-		if (!canGo(mouvement, 1, false))
-			return;
-
-		if (mouvement.getPositions().size() != 1) {
-			for (Position position : mouvement.getPositions()) {
+		if (movement.getPositions().size() != 1) {
+			for (Position position : movement.getPositions()) {
 				this.put(
 						this.nextMarblePosition(position,
-								mouvement.getDirection()),
+								movement.getDirection()),
 						this.getMarble(position));
 				this.removeMarble(position);
 			}
 		} else {
 			
-			Position marblePosition = mouvement.getFirstPosition();
-
+			Position currentPosition = movement.getFirstPosition();
+			System.out.println("pos1 : "+currentPosition);
+			
 			Marble marbleToPlace = null, marbleToReplace;
-			Position currentPosition = marblePosition;
 
 			while (this.getMarble(currentPosition) != null) {
+				System.out.println("pos : "+currentPosition);
 				marbleToReplace = this.getMarble(currentPosition);
-				this.removeMarble(marblePosition);
+				this.removeMarble(currentPosition);
 				this.put(currentPosition, marbleToPlace);
 				marbleToPlace = marbleToReplace;
 
 				currentPosition = this.nextMarblePosition(currentPosition,
-						mouvement.getDirection());
+						movement.getDirection());
 
 			}
 			this.put(currentPosition, marbleToPlace);
@@ -273,13 +278,19 @@ public class Board {
 	public boolean isMouvementValid(Movement mouvement, Player player){
 		if(mouvement == null)
 			return false;
+		
 		for(Position position : mouvement.getPositions()){
 			if(this.getMarble(position).getColor() != player.getColor())
 				return false;
 		}
 		
-		
-		return true;
+		try {
+			System.out.println(mouvement +" -> "+this.canGo(mouvement, this.MARBLE_POWER, false));
+			return this.canGo(mouvement, this.MARBLE_POWER, false);
+		} catch (NoMarbleFound e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	/**

@@ -1,5 +1,7 @@
 package fr.iutvalence.info.m2103.project.tp1.abalone;
 
+import java.util.Scanner;
+
 /**
  * This class launches the abalone game
  * 
@@ -19,30 +21,33 @@ public class AbaloneLauncher {
 		System.out.println("Bienvenue dans Abalone!");
 		System.out.println("\n1.Nouvelle partie");
 
-		// TODO fix implementation: a game is not supposed to be played?
+		// TODO (done) fix implementation: a game is not supposed to be played?
+		Scanner scan = new Scanner(System.in);
 		AbaloneGame game = new AbaloneGame();
 		Player[] players = new Player[] { new Player(Color.BLACK),
 				new Player(Color.WHITE) };
 		Player winner;
 		int turn = 1;
-		Movement mouvement;
+		Movement movement;
 
 		do {
 			winner = game.won(players);
 
 			System.out.println(game);
 			do {
-				mouvement = players[turn % Player.PLAYERS_NUMBER].waitAction();
-			} while (!game.getBoard().isMouvementValid(mouvement,
+				movement = players[turn % Player.PLAYERS_NUMBER]
+						.waitAction(scan);
+			} while (!game.getBoard().isMouvementValid(movement.copy(),
 					players[turn % Player.PLAYERS_NUMBER]));
 
 			try {
-				game.getBoard().move(mouvement);
+				game.getBoard().move(movement);
 			} catch (NoMarbleFound e) {
 				e.printStackTrace();
 			}
 			turn++;
 		} while (winner == null);
+		scan.close();
 
 	}
 }

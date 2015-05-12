@@ -47,10 +47,8 @@ public class Movement {
 	 * @return The element of the Positions set
 	 */
 	public Position getFirstPosition(){
-		for(Position position : this.positions)
-			return position;
-		//Java won't execute without this line :
-		return null;
+		
+		return (Position)(this.positions.toArray()[0]);
 	}
 	
 	/**
@@ -59,6 +57,38 @@ public class Movement {
 	 */
 	public Direction getDirection() {
 		return this.direction;
+	}
+
+	@Override
+	public String toString() {
+		String str = new String();
+		for(Position position: this.positions){
+			str += position + " ";
+		}
+		return str + this.direction;
+	}
+
+	/**
+	 * @param nextMarblePosition
+	 * @return
+	 */
+	public Movement setPosition(Position position) {
+		this.positions = new HashSet<Position>();
+		this.positions.add(position);
+		return this;
+	}
+
+	/**
+	 * @return
+	 */
+	public Movement copy() {
+		HashSet<Position> positions = new HashSet<Position>();
+
+		for(Position position : this.positions){
+			positions.add(position);
+		}
+		
+		return new Movement(positions, this.direction);
 	}
 
 }

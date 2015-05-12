@@ -33,8 +33,7 @@ public class Player {
 	 * This method wait for an user input and create the movement that correspond.
 	 * @return the movement to validate and execute
 	 */
-	public Movement waitAction() {
-		Scanner scan = new Scanner(System.in);
+	public Movement waitAction(Scanner scan) {
 		Movement mouvement;
 		HashSet<Position> positions = new HashSet<Position>();
 		
@@ -44,12 +43,12 @@ public class Player {
 		if(input.length%2 != 1 || input.length > 7)
 			return null;
 		
-		for(int coordonee=0; coordonee<(input.length-1)/2; coordonee+=2){
+		for(int coordonee=0; coordonee<(input.length-1); coordonee+=2){
 			positions.add(new Position(Integer.parseInt(input[coordonee]), Integer.parseInt(input[coordonee+1])));
 		}
 		
-		mouvement = new Movement(positions, Direction.fromStr(input[input.length]));
-		return null;
+		mouvement = new Movement(positions, Direction.fromStr(input[input.length-1]));
+		return mouvement;
 	}
 
 	/**

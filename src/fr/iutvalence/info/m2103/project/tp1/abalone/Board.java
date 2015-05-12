@@ -149,11 +149,11 @@ public class Board {
 		Position[] whiteMarblesPosition = preset.getWhiteMarbles();
 
 		for (Position position : blackMarblesPosition) {
-			board.put(position, new Marble(Color.BLACK));
+			this.put(position, new Marble(Color.BLACK));
 		}
 
 		for (Position position : whiteMarblesPosition) {
-			board.put(position, new Marble(Color.WHITE));
+			this.put(position, new Marble(Color.WHITE));
 		}
 	}
 

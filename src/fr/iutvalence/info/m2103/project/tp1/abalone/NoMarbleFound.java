@@ -4,9 +4,14 @@
 package fr.iutvalence.info.m2103.project.tp1.abalone;
 
 /**
- * @author amaglioa
+ * This is the NoMarbleFound exception raised in case of positions that does not
+ * lead to a Marble
+ * 
+ * @author Amaglio & Arsac
  *
  */
-public class NoMarbleFound extends Exception{
+
+@SuppressWarnings("serial")
+public class NoMarbleFound extends Exception {
 
 }

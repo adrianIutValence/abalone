@@ -3,7 +3,6 @@
  */
 package fr.iutvalence.info.m2103.project.tp1.abalone;
 
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -12,23 +11,30 @@ import java.util.Scanner;
  *
  */
 public class KeyboardPlayer extends AbstractPlayer{
+	
+	private final Scanner scan = new Scanner(System.in);
 	/**
 	 * @param color
 	 */
 	public KeyboardPlayer(Color color) {
 		super(color);
 	}
+	
+	public void finalize(){
+		this.scan.close();
+	}
 
 
 	/* (non-Javadoc)
 	 * @see fr.iutvalence.info.m2103.project.tp1.abalone.AbstractPlayer#waitAction()
 	 */
-	public Movement waitAction(Scanner scan) {
+	@Override
+	public Movement waitAction() {
 		Movement mouvement;
 		LinkedList<Position> positions = new LinkedList<Position>();
 		
 		System.out.println("X1,Y1,[X2,Y2,[X3, Y3,]]D");
-		String[] input = scan.nextLine().split(",");
+		String[] input = this.scan.nextLine().split(",");
 		
 		if(input.length%2 != 1 || input.length > 7)
 			return null;
@@ -41,13 +47,4 @@ public class KeyboardPlayer extends AbstractPlayer{
 		return mouvement;
 	}
 
-
-	/* (non-Javadoc)
-	 * @see fr.iutvalence.info.m2103.project.tp1.abalone.AbstractPlayer#waitAction()
-	 */
-	@Override
-	public Movement waitAction() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

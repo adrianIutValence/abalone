@@ -8,6 +8,11 @@ package fr.iutvalence.info.m2103.project.tp1.abalone;
  */
 public class AbaloneGame {
 
+	private static final int HALF_BOARD_RIGHT_COORDINATE = 5;
+	private static final int HALF_BOARD_LEFT_COORDINATE = 0;
+	private static final int BOARD_COORDINATES = 9;
+	private static final int COORDINATES_COUNT_START = 1;
+	private static final int SPACES_COUNT_START = 0;
 	/**
 	 * The abalone board
 	 */
@@ -41,11 +46,11 @@ public class AbaloneGame {
 	public String toString() {
 		String ret = "";
 
-		// TODO replace hard-coded numbers with constants if possible
-		for (int leftCoordinate = 1; leftCoordinate <= 5; leftCoordinate++) {
-			for (int nbSpaces = 0; nbSpaces < 5 - leftCoordinate; nbSpaces++)
+		// TODO (done) replace hard-coded numbers with constants if possible
+		for (int leftCoordinate = COORDINATES_COUNT_START; leftCoordinate <= HALF_BOARD_LEFT_COORDINATE; leftCoordinate++) {
+			for (int nbSpaces = SPACES_COUNT_START; nbSpaces < HALF_BOARD_LEFT_COORDINATE - leftCoordinate; nbSpaces++)
 				ret += " ";
-			for (int rightCoordinate = 1; rightCoordinate <= (4 + leftCoordinate); rightCoordinate++) {
+			for (int rightCoordinate = COORDINATES_COUNT_START; rightCoordinate <= (HALF_BOARD_RIGHT_COORDINATE + leftCoordinate); rightCoordinate++) {
 				Marble marble = board.getMarble(new Position(leftCoordinate,
 						rightCoordinate));
 				if (marble == null)
@@ -55,10 +60,10 @@ public class AbaloneGame {
 			}
 			ret += "\n";
 		}
-		for (int leftCoordinate = 6; leftCoordinate <= 9; leftCoordinate++) {
-			for (int nbSpaces = 0; nbSpaces < leftCoordinate - 5; nbSpaces++)
+		for (int leftCoordinate = HALF_BOARD_LEFT_COORDINATE+1; leftCoordinate <= BOARD_COORDINATES; leftCoordinate++) {
+			for (int nbSpaces = SPACES_COUNT_START; nbSpaces < leftCoordinate - HALF_BOARD_LEFT_COORDINATE; nbSpaces++)
 				ret += " ";
-			for (int rightCoordinate = leftCoordinate-4; rightCoordinate <= 9; rightCoordinate++) {
+			for (int rightCoordinate = leftCoordinate-HALF_BOARD_RIGHT_COORDINATE; rightCoordinate <= BOARD_COORDINATES; rightCoordinate++) {
 				Marble marble = board.getMarble(new Position(leftCoordinate,
 						rightCoordinate));
 				if (marble == null)
@@ -78,7 +83,7 @@ public class AbaloneGame {
 	 */
 	public AbstractPlayer won(AbstractPlayer[] players) {
 		for(int count = 0; count< players.length; count++){
-			if(this.board.countMarbles(players[count].getColor()) < this.board.MAX_MARBLES - this.board.MARBLES_TO_WIN)
+			if(this.board.countMarbles(players[count].getColor()) < Board.MAX_MARBLES - Board.MARBLES_TO_WIN)
 				return players[count%AbstractPlayer.PLAYERS_NUMBER];
 		}
 		return null;

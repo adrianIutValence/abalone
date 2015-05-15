@@ -3,7 +3,6 @@
  */
 package fr.iutvalence.info.m2103.project.tp1.abalone;
 
-import java.util.HashSet;
 import java.util.LinkedList;
 
 /**

@@ -50,6 +50,11 @@ public class Presets {
 	};
 
 	// TODO write a comment
+	/**
+	 * This method return a defined list of start positions for both black and white marbles
+	 * @param id It define which preset will be returned
+	 * @return The selected preset
+	 */
 	public static Preset preset(int id) {
 		return PRESETS[id];
 	}

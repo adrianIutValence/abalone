@@ -1,9 +1,7 @@
 package fr.iutvalence.info.m2103.project.tp1.abalone;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.Set;
 
 /**
  * This is the abalone board that manages the marble
@@ -306,7 +304,7 @@ public class Board {
 	}
 
 	public boolean isMouvementValid(Movement mouvement, AbstractPlayer player) {
-		if (mouvement == null)
+		if (mouvement == null || mouvement.getPositions() == null)
 			return false;
 
 		for (Position position : mouvement.getPositions()) {
@@ -316,8 +314,8 @@ public class Board {
 
 		try {
 			System.out.println(mouvement + " -> "
-					+ this.canGo(mouvement, this.MARBLE_POWER, false));
-			return this.canGo(mouvement, this.MARBLE_POWER, false);
+					+ this.canGo(mouvement, Board.MARBLE_POWER, false));
+			return this.canGo(mouvement, Board.MARBLE_POWER, false);
 		} catch (NoMarbleFound e) {
 			e.printStackTrace();
 			return false;

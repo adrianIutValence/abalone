@@ -30,13 +30,21 @@ public class Position {
 		this.right = right;
 	}
 
-	// TODO write a comment
+	// TODO (done) write a comment
+	/**
+	 * Left coordinate getter
+	 * @return the left coordinate of the position
+	 */
 	public int getLeft() {
 		return left;
 	}
 
-	// TODO write a comment
-	public int getRight() {
+	// TODO (done) write a comment
+		/**
+		 * Right coordinate getter
+		 * @return the right coordinate of the position
+		 */
+		public int getRight() {
 		return right;
 	}
 

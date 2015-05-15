@@ -44,15 +44,17 @@ public enum Direction {
 	 * Left coordinate difference for the marble that will go in this direction
 	 */
 	private final int leftDelta;
-	
+
 	// TODO (done) write a comment
 	/**
 	 * Left coordinate difference for the marble that will go in this direction
 	 */
 	private final int rightDelta;
 
-	// TODO finish writing comment
+	// TODO (DONE) finish writing comment
 	/**
+	 * Define a direction on the board. There are six, enumerated here with the
+	 * left and right coodinates delat they imply
 	 * 
 	 * @param leftDelta
 	 * @param rightDelta
@@ -62,35 +64,44 @@ public enum Direction {
 		this.rightDelta = rightDelta;
 	}
 
-	// TODO write a comment
+	// TODO (done) write a comment
+	/**
+	 * Getter of the left delta
+	 * @return the left delta of a Direction
+	 */
 	public int getLeftDelta() {
 		return leftDelta;
 	}
 
-	// TODO write a comment
-	public int getRightDelta() {
+	// TODO (done) write a comment
+		/**
+		 * Getter of the right delta
+		 * @return the right delta of a Direction
+		 */
+		public int getRightDelta() {
 		return rightDelta;
 	}
 
 	/**
-	 * Convert a String in a direction. The string have to be equals to the constant name.
-	 * Example : fromStr(new String("NE")) returns Direction.NE
+	 * Convert a String in a direction. The string have to be equals to the
+	 * constant name. Example : fromStr(new String("NE")) returns Direction.NE
+	 * 
 	 * @param string
 	 * @return the direction that correspond to the param str
 	 */
 	public static Direction fromStr(String string) {
-		//The case statement does not compare String objects
-		if(string.equals("NE"))
+		// The case statement does not compare String objects
+		if (string.equals("NE"))
 			return NE;
-		else if(string.equals("NW"))
+		else if (string.equals("NW"))
 			return NW;
-		else if(string.equals("SE"))
+		else if (string.equals("SE"))
 			return SE;
-		else if(string.equals("SW"))
+		else if (string.equals("SW"))
 			return SW;
-		else if(string.equals("E"))
+		else if (string.equals("E"))
 			return E;
-		else if(string.equals("W"))
+		else if (string.equals("W"))
 			return W;
 		return null;
 	}

@@ -2,8 +2,6 @@
  * 
  */
 package fr.iutvalence.info.m2103.project.tp1.abalone;
-import java.util.HashSet;
-import java.util.Scanner;
 
 /**
  * This class define an abalone player
@@ -30,7 +28,7 @@ public abstract class AbstractPlayer {
 	}
 
 	/**
-	 * This method wait for an user input and create the movement that correspond.
+	 * This method waits for an user input and create the movement that correspond.
 	 * @return the movement to validate and execute
 	 */
 	public abstract Movement waitAction();

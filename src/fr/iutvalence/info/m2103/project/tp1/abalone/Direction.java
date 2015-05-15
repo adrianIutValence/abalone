@@ -91,7 +91,7 @@ public enum Direction {
 		else if(string.equals("E"))
 			return E;
 		else if(string.equals("W"))
-			return SW;
+			return W;
 		return null;
 	}
 

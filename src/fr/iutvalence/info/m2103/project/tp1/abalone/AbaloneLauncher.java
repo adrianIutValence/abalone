@@ -24,9 +24,9 @@ public class AbaloneLauncher {
 		// TODO (done) fix implementation: a game is not supposed to be played?
 		Scanner scan = new Scanner(System.in);
 		AbaloneGame game = new AbaloneGame();
-		Player[] players = new Player[] { new Player(Color.BLACK),
-				new Player(Color.WHITE) };
-		Player winner;
+		KeyboardPlayer[] players = new KeyboardPlayer[] { new KeyboardPlayer(Color.BLACK),
+				new KeyboardPlayer(Color.WHITE) };
+		AbstractPlayer winner;
 		int turn = 1;
 		Movement movement;
 
@@ -35,10 +35,10 @@ public class AbaloneLauncher {
 
 			System.out.println(game);
 			do {
-				movement = players[turn % Player.PLAYERS_NUMBER]
+				movement = players[turn % AbstractPlayer.PLAYERS_NUMBER]
 						.waitAction(scan);
 			} while (!game.getBoard().isMouvementValid(movement.copy(),
-					players[turn % Player.PLAYERS_NUMBER]));
+					players[turn % AbstractPlayer.PLAYERS_NUMBER]));
 
 			try {
 				game.getBoard().move(movement);

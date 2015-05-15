@@ -2,6 +2,7 @@ package fr.iutvalence.info.m2103.project.tp1.abalone;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Set;
 
 /**
@@ -28,8 +29,7 @@ public class Board {
 	 * The amount of marble a player have to push out to win
 	 */
 	public static final int MARBLES_TO_WIN = 6;
-	
-	
+
 	/**
 	 * The maximum marble a player got on the board
 	 */
@@ -41,7 +41,7 @@ public class Board {
 	 */
 	private HashMap<Position, Marble> board;
 
-	private Set<Position> validPositions;
+	private LinkedList<Position> validPositions;
 
 	/**
 	 * Sets the marbles in the classic starting position
@@ -67,7 +67,7 @@ public class Board {
 	 */
 	private void init() {
 
-		validPositions = new HashSet<Position>();
+		validPositions = new LinkedList<Position>();
 		validPositions.add(new Position(1, 1));
 		validPositions.add(new Position(1, 2));
 		validPositions.add(new Position(1, 3));
@@ -172,14 +172,17 @@ public class Board {
 	public boolean canGo(Movement movement, int power, boolean attack)
 			throws NoMarbleFound {
 
-		if(movement == null)
+		if (movement == null)
 			return false;
-		
-		if (movement.getPositions().size() != 1) {
+
+		if (movement.getPositions().size() > 1) {
+			if (!this.areAlignedAndAdjacents(movement.getPositions())) {
+				return false;
+			}
 			for (Position position : movement.getPositions()) {
 				if (this.getMarble(this.nextMarblePosition(position,
 						movement.getDirection())) != null
-						&& !this.onTheBoard(this.nextMarblePosition(position,
+						|| !this.onTheBoard(this.nextMarblePosition(position,
 								movement.getDirection())))
 					return false;
 			}
@@ -195,7 +198,6 @@ public class Board {
 			Position nextMarblePosition = this.nextMarblePosition(position,
 					direction);
 
-			
 			// if no marble detected
 			if (this.getMarble(nextMarblePosition) == null) {
 
@@ -212,24 +214,54 @@ public class Board {
 					.getMarble(position).getColor()) {
 				if (attack)
 					return false;
-				return this.canGo(movement.setPosition(nextMarblePosition), power - MARBLE_POWER, true);
+				return this.canGo(movement.setPosition(nextMarblePosition),
+						power - MARBLE_POWER, true);
 			}
 
 			if (attack) {
 				if (power <= MARBLE_POWER)
 					return false;
-				return this.canGo(movement.setPosition(nextMarblePosition), power - MARBLE_POWER, attack);
+				return this.canGo(movement.setPosition(nextMarblePosition),
+						power - MARBLE_POWER, attack);
 			}
 
 			if (power < MAX_PUSHABLE_MARBLE)
-				return this.canGo(movement.setPosition(nextMarblePosition), power + MARBLE_POWER, attack);
+				return this.canGo(movement.setPosition(nextMarblePosition),
+						power + MARBLE_POWER, attack);
 			return false;
 		}
 	}
 
+	/**
+	 * Test if the positions in parameter are contiguous and aligned
+	 * 
+	 * @param positions
+	 *            the positions that will be tested
+	 * @return true if the conditions are verified
+	 */
+	private boolean areAlignedAndAdjacents(LinkedList<Position> positions) {
+		if (positions.size() == 2
+				&& Math.abs(positions.get(0).getLeft()
+						- positions.get(1).getLeft()) <= 1
+				&& Math.abs(positions.get(0).getRight()
+						- positions.get(1).getRight()) <= 1) {
+			return true;
+
+		} else if (positions.size() == 3
+				&& positions.get(0).getLeft() - positions.get(1).getLeft() == positions
+						.get(1).getLeft() - positions.get(2).getLeft()
+				&& positions.get(0).getRight() - positions.get(1).getRight() == positions
+						.get(1).getRight() - positions.get(2).getRight()
+				&& positions.get(0).getLeft() - positions.get(1).getLeft() <= 1
+				&& positions.get(0).getRight() - positions.get(1).getRight() <= 1) {
+			return true;
+		} else
+			return false;
+	}
+
 	public void move(Movement movement) throws NoMarbleFound {
 
-		if (movement.getPositions().size() != 1) {
+		if (movement.getPositions().size() > 1) {
 			for (Position position : movement.getPositions()) {
 				this.put(
 						this.nextMarblePosition(position,
@@ -238,14 +270,12 @@ public class Board {
 				this.removeMarble(position);
 			}
 		} else {
-			
+
 			Position currentPosition = movement.getFirstPosition();
-			System.out.println("pos1 : "+currentPosition);
-			
+
 			Marble marbleToPlace = null, marbleToReplace;
 
 			while (this.getMarble(currentPosition) != null) {
-				System.out.println("pos : "+currentPosition);
 				marbleToReplace = this.getMarble(currentPosition);
 				this.removeMarble(currentPosition);
 				this.put(currentPosition, marbleToPlace);
@@ -274,18 +304,19 @@ public class Board {
 	private boolean onTheBoard(Position position) {
 		return this.validPositions.contains(position);
 	}
-	
-	public boolean isMouvementValid(Movement mouvement, Player player){
-		if(mouvement == null)
+
+	public boolean isMouvementValid(Movement mouvement, AbstractPlayer player) {
+		if (mouvement == null)
 			return false;
-		
-		for(Position position : mouvement.getPositions()){
-			if(this.getMarble(position).getColor() != player.getColor())
+
+		for (Position position : mouvement.getPositions()) {
+			if (this.getMarble(position).getColor() != player.getColor())
 				return false;
 		}
-		
+
 		try {
-			System.out.println(mouvement +" -> "+this.canGo(mouvement, this.MARBLE_POWER, false));
+			System.out.println(mouvement + " -> "
+					+ this.canGo(mouvement, this.MARBLE_POWER, false));
 			return this.canGo(mouvement, this.MARBLE_POWER, false);
 		} catch (NoMarbleFound e) {
 			e.printStackTrace();
@@ -331,12 +362,13 @@ public class Board {
 
 	/**
 	 * Count the blacks marbles on the board in the color in parameter
+	 * 
 	 * @return the marbles number
 	 */
 	public int countMarbles(Color color) {
 		int number = 0;
-		for(Marble marble: this.board.values()){
-			if(marble.getColor() == color)
+		for (Marble marble : this.board.values()) {
+			if (marble.getColor() == color)
 				number++;
 		}
 		return number;

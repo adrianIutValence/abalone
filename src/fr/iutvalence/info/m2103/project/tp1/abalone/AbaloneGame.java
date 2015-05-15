@@ -76,10 +76,10 @@ public class AbaloneGame {
 	 * Test if a game is won
 	 * @return the player that won the game
 	 */
-	public Player won(Player[] players) {
+	public AbstractPlayer won(AbstractPlayer[] players) {
 		for(int count = 0; count< players.length; count++){
 			if(this.board.countMarbles(players[count].getColor()) < this.board.MAX_MARBLES - this.board.MARBLES_TO_WIN)
-				return players[count%Player.PLAYERS_NUMBER];
+				return players[count%AbstractPlayer.PLAYERS_NUMBER];
 		}
 		return null;
 	}

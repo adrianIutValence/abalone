@@ -4,6 +4,7 @@
 package fr.iutvalence.info.m2103.project.tp1.abalone;
 
 import java.util.HashSet;
+import java.util.LinkedList;
 
 /**
  * this class define an abalone movement.
@@ -15,7 +16,7 @@ public class Movement {
 	/**
 	 * A set that include 1 to 3 marble positions. If there is only one position, it's a pushing movement. It's a lateral one else.
 	 */
-	private HashSet<Position> positions;
+	private LinkedList<Position> positions;
 	
 	/**
 	 * The movement direction
@@ -28,7 +29,7 @@ public class Movement {
 	 * @param positions the position(s)
 	 * @param direction the direction
 	 */
-	public Movement(HashSet<Position> positions, Direction direction){
+	public Movement(LinkedList<Position> positions, Direction direction){
 		this.positions = positions;
 		this.direction = direction;
 	}
@@ -37,7 +38,7 @@ public class Movement {
 	 * Positions getter
 	 * @return the movement potition(s)
 	 */
-	public HashSet<Position> getPositions() {
+	public LinkedList<Position> getPositions() {
 		return positions;
 	}
 	
@@ -73,7 +74,7 @@ public class Movement {
 	 * @return
 	 */
 	public Movement setPosition(Position position) {
-		this.positions = new HashSet<Position>();
+		this.positions = new LinkedList<Position>();
 		this.positions.add(position);
 		return this;
 	}
@@ -82,7 +83,7 @@ public class Movement {
 	 * @return
 	 */
 	public Movement copy() {
-		HashSet<Position> positions = new HashSet<Position>();
+		LinkedList<Position> positions = new LinkedList<Position>();
 
 		for(Position position : this.positions){
 			positions.add(position);

@@ -41,7 +41,12 @@ public class AbaloneLauncher {
 		}
 
 		do {
-			winner = game.won(players);
+			//Display game
+			if(keyPlay){
+				System.out.println(game);
+			}else{
+				
+			}
 
 			do {
 				movement = players[turn % AbstractPlayer.PLAYERS_NUMBER]
@@ -55,6 +60,8 @@ public class AbaloneLauncher {
 				e.printStackTrace();
 			}
 			turn++;
+
+			winner = game.won(players);
 		} while (winner == null);
 
 	}

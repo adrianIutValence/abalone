@@ -8,7 +8,7 @@ package fr.iutvalence.info.m2103.project.tp1.abalone;
  * @author amaglioa
  *
  */
-public abstract class AbstractPlayer {
+public abstract class AbstractPlayer implements Player {
 	
 	/**
 	 * Number of players that actually play the game
@@ -27,10 +27,10 @@ public abstract class AbstractPlayer {
 		this.color = color;
 	}
 
-	/**
-	 * This method waits for an user input and create the movement that correspond.
-	 * @return the movement to validate and execute
+	/* (non-Javadoc)
+	 * @see fr.iutvalence.info.m2103.project.tp1.abalone.Player#waitAction()
 	 */
+	@Override
 	public abstract Movement waitAction();
 
 	/**

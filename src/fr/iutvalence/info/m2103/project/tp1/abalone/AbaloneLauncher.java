@@ -1,5 +1,7 @@
 package fr.iutvalence.info.m2103.project.tp1.abalone;
 
+import java.util.Scanner;
+
 import fr.iutvalence.info.m2105.project.tp1.ihm.*;
 
 /**
@@ -20,24 +22,30 @@ public class AbaloneLauncher {
 	public static void main(String[] args) {
 		// TODO (done) fix implementation: a game is not supposed to be played?
 
-		boolean keyPlay = false;
+		boolean keyPlay = true;
 
-		AbstractPlayer[] players;
+		Player[] players;
+		Color[] colors = {Color.WHITE, Color.BLACK};
+		Display[] displays;
 		AbaloneGame game = new AbaloneGame();
-		AbstractPlayer winner;
+		Player winner;
 		int turn = 1;
 		Movement movement;
 
 		if (keyPlay) {
+			Scanner scan = new Scanner(System.in);
+			
 			System.out.println("Bienvenue dans Abalone!");
 			System.out.println("\n1.Nouvelle partie");
 
-			players = new AbstractPlayer[] { new KeyboardPlayer(Color.BLACK),
-					new KeyboardPlayer(Color.WHITE) };
+			players = new AbstractPlayer[] { new KeyboardPlayer(Color.BLACK, scan),
+											 new KeyboardPlayer(Color.WHITE, scan) };
 		} else {
 			players = new AbstractPlayer[] { new GraphicPlayer(Color.BLACK),
-					new GraphicPlayer(Color.WHITE) };
+											 new GraphicPlayer(Color.WHITE) };
 			Window window = new Window();
+			
+			window.
 		}
 
 		do {

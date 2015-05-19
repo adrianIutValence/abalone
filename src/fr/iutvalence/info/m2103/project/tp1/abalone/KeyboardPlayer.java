@@ -12,12 +12,13 @@ import java.util.Scanner;
  */
 public class KeyboardPlayer extends AbstractPlayer{
 	
-	private final Scanner scan = new Scanner(System.in);
+	private final Scanner scan;
 	/**
 	 * @param color
 	 */
-	public KeyboardPlayer(Color color) {
+	public KeyboardPlayer(Color color, Scanner scan) {
 		super(color);
+		this.scan = scan;
 	}
 	
 	public void finalize(){

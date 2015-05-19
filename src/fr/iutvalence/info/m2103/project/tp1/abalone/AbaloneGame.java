@@ -8,8 +8,8 @@ package fr.iutvalence.info.m2103.project.tp1.abalone;
  */
 public class AbaloneGame {
 
-	private static final int HALF_BOARD_RIGHT_COORDINATE = 5;
-	private static final int HALF_BOARD_LEFT_COORDINATE = 0;
+	private static final int HALF_BOARD_RIGHT_COORDINATE = 4;
+	private static final int HALF_BOARD_LEFT_COORDINATE = 5;
 	private static final int BOARD_COORDINATES = 9;
 	private static final int COORDINATES_COUNT_START = 1;
 	private static final int SPACES_COUNT_START = 0;
@@ -81,7 +81,7 @@ public class AbaloneGame {
 	 * Test if a game is won
 	 * @return the player that won the game
 	 */
-	public AbstractPlayer won(AbstractPlayer[] players) {
+	public Player won(AbstractPlayer[] players) {
 		for(int count = 0; count< players.length; count++){
 			if(this.board.countMarbles(players[count].getColor()) < Board.MAX_MARBLES - Board.MARBLES_TO_WIN)
 				return players[count%AbstractPlayer.PLAYERS_NUMBER];

@@ -12,8 +12,10 @@ import javax.swing.JFrame;
 @SuppressWarnings("serial")
 public class Window extends JFrame{
 	public Window(){
-		this.setTitle("Coucou");
+		this.setTitle("ABALONE... The TRUE meaning of life");
 		this.setSize(900, 900);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		this.getContentPane();
 	}
 }

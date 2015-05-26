@@ -16,6 +16,5 @@ public class Window extends JFrame{
 		this.setSize(900, 900);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		this.getContentPane();
 	}
 }

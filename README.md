@@ -1,8 +1,9 @@
 # abalone
-An amazing abalon game in Java
+An amazing abalone game in Java
 
 
 Coordinate system :
+        
         1 2 3 4 5
      A O O O O O 6
     B O O O O O O 7

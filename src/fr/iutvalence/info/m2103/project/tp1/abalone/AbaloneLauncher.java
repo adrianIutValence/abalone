@@ -22,38 +22,38 @@ public class AbaloneLauncher {
 	public static void main(String[] args) {
 		// TODO (done) fix implementation: a game is not supposed to be played?
 
-		boolean keyPlay = true;
+		boolean keyPlay = false;
 
-		Player[] players;
-		Color[] colors = {Color.WHITE, Color.BLACK};
-		Display[] displays;
+		AbstractPlayer[] players;
 		AbaloneGame game = new AbaloneGame();
 		Player winner;
 		int turn = 1;
 		Movement movement;
+		Scanner scan = new Scanner(System.in);
+		GUI gui = new GUI(game.getBoard());
 
 		if (keyPlay) {
-			Scanner scan = new Scanner(System.in);
-			
+
 			System.out.println("Bienvenue dans Abalone!");
 			System.out.println("\n1.Nouvelle partie");
 
-			players = new AbstractPlayer[] { new KeyboardPlayer(Color.BLACK, scan),
-											 new KeyboardPlayer(Color.WHITE, scan) };
+			players = new AbstractPlayer[] {
+					new KeyboardPlayer(Color.BLACK, scan),
+					new KeyboardPlayer(Color.WHITE, scan) };
 		} else {
 			players = new AbstractPlayer[] { new GraphicPlayer(Color.BLACK),
-											 new GraphicPlayer(Color.WHITE) };
-			Window window = new Window();
-			
-			window.
-		}
+					new GraphicPlayer(Color.WHITE) };
 
-		do {
-			//Display game
-			if(keyPlay){
+			gui.run();
+		}
+		return;
+
+		/*do {
+			// Display game
+			if (keyPlay) {
 				System.out.println(game);
-			}else{
-				
+			} else {
+				gui.refresh();
 			}
 
 			do {
@@ -70,7 +70,7 @@ public class AbaloneLauncher {
 			turn++;
 
 			winner = game.won(players);
-		} while (winner == null);
+		} while (winner == null);*/
 
 	}
 }

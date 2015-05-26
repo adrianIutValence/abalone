@@ -8,11 +8,11 @@ package fr.iutvalence.info.m2103.project.tp1.abalone;
  */
 public class AbaloneGame {
 
-	private static final int HALF_BOARD_RIGHT_COORDINATE = 4;
-	private static final int HALF_BOARD_LEFT_COORDINATE = 5;
-	private static final int BOARD_COORDINATES = 9;
-	private static final int COORDINATES_COUNT_START = 1;
-	private static final int SPACES_COUNT_START = 0;
+	public static final int HALF_BOARD_RIGHT_COORDINATE = 4;
+	public static final int HALF_BOARD_LEFT_COORDINATE = 5;
+	public static final int BOARD_COORDINATES = 9;
+	public static final int COORDINATES_COUNT_START = 1;
+	public static final int SPACES_COUNT_START = 0;
 	/**
 	 * The abalone board
 	 */

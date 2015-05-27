@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 
 import fr.iutvalence.info.m2103.project.tp1.abalone.AbaloneGame;
 import fr.iutvalence.info.m2103.project.tp1.abalone.Board;
+import fr.iutvalence.info.m2103.project.tp1.abalone.Color;
 import fr.iutvalence.info.m2103.project.tp1.abalone.Marble;
 import fr.iutvalence.info.m2103.project.tp1.abalone.Position;
 
@@ -26,36 +27,96 @@ public class BoardDisplay extends JPanel {
 	 * 
 	 */
 	public BoardDisplay(Board board) {
-		this.grid = new GridLayout(17, 9);
+		this.grid = new GridLayout(9, 17);
 		this.grid.setHgap(10);
-		this.grid.setVgap(20);
+		this.grid.setVgap(5);
 		this.setLayout(grid);
-		
-		
-		//TOUT DOUX :3
-		for (int leftCoordinate = AbaloneGame.COORDINATES_COUNT_START; leftCoordinate <= AbaloneGame.HALF_BOARD_LEFT_COORDINATE; leftCoordinate++) {
-			for (int nbSpaces = AbaloneGame.SPACES_COUNT_START; nbSpaces < AbaloneGame.HALF_BOARD_LEFT_COORDINATE - leftCoordinate; nbSpaces++)
-				this.add(new JLabel(" "));
-			for (int rightCoordinate = AbaloneGame.COORDINATES_COUNT_START; rightCoordinate <= (AbaloneGame.HALF_BOARD_RIGHT_COORDINATE + leftCoordinate); rightCoordinate++) {
-				Marble marble = board.getMarble(new Position(leftCoordinate,
-						rightCoordinate));
-				if (marble == null)
-					this.add(new JLabel("+"));
-				else
-					this.add(new JLabel(""+marble));
+
+		// TOUT DOUX :3
+		int nbSpaces;
+		int nbBoules;
+		for (int yRange = 0; yRange < 5; yRange++) {
+			nbSpaces = 0;
+			nbBoules = 0;
+			for (int xRange = 0; xRange < 18; xRange++) {
+				if ((yRange + xRange) % 2 == 1) {
+					this.add(new JLabel(""));
+					continue;
+				}
+				if (nbSpaces < (9 - (yRange + 5)) / 2) {
+					this.add(new JLabel());
+					nbSpaces++;
+					continue;
+				}
+				if (nbBoules < yRange + 5) {
+					if (board.getMarble(new Position(yRange + 1,
+							(xRange + yRange) / 2 - 1)) == null)
+						this.add(new JLabel("O"));
+
+					else if (board
+							.getMarble(
+									new Position(yRange + 1,
+											(xRange + yRange) / 2 - 1))
+							.getColor() == Color.BLACK)
+						this.add(new JLabel("B"));
+					else if (board
+							.getMarble(
+									new Position(yRange + 1,
+											(xRange + yRange) / 2 - 1))
+							.getColor() == Color.WHITE)
+						this.add(new JLabel("W"));
+					nbBoules++;
+					continue;
+				}
+				if (nbSpaces < 9 - (yRange + 5)) {
+					this.add(new JLabel(""));
+					nbSpaces++;
+					continue;
+				}
+
 			}
 		}
-		for (int leftCoordinate = AbaloneGame.HALF_BOARD_LEFT_COORDINATE+1; leftCoordinate <= AbaloneGame.BOARD_COORDINATES; leftCoordinate++) {
-			for (int nbSpaces = AbaloneGame.SPACES_COUNT_START; nbSpaces < leftCoordinate - AbaloneGame.HALF_BOARD_LEFT_COORDINATE; nbSpaces++)
-				this.add(new JLabel(" "));
-			for (int rightCoordinate = leftCoordinate-AbaloneGame.HALF_BOARD_RIGHT_COORDINATE; rightCoordinate <= AbaloneGame.BOARD_COORDINATES; rightCoordinate++) {
-				Marble marble = board.getMarble(new Position(leftCoordinate,
-						rightCoordinate));
-				if (marble == null)
-					this.add(new JLabel("+"));
-				else
-					this.add(new JLabel(""+marble));
+		for (int yRange = 5; yRange < 9; yRange++) {
+			nbSpaces = 0;
+			nbBoules = 0;
+			for (int xRange = 0; xRange < 18; xRange++) {
+				if ((yRange + xRange) % 2 == 1) {
+					this.add(new JLabel(""));
+					continue;
+				}
+				if (nbSpaces < (yRange - 4) / 2) {
+					this.add(new JLabel(""));
+					nbSpaces++;
+					continue;
+				}
+				if (nbBoules < 9 + 4 - yRange) {
+					if (board.getMarble(new Position(yRange + 1,
+							(xRange + yRange) / 2 - 1)) == null)
+						this.add(new JLabel("O"));
+
+					else if (board
+							.getMarble(
+									new Position(yRange + 1,
+											(xRange + yRange) / 2 - 1))
+							.getColor() == Color.BLACK)
+						this.add(new JLabel("B"));
+					else if (board
+							.getMarble(
+									new Position(yRange + 1,
+											(xRange + yRange) / 2 - 1))
+							.getColor() == Color.WHITE)
+						this.add(new JLabel("W"));
+					nbBoules++;
+					continue;
+				}
+				if (nbSpaces < yRange - 4) {
+					this.add(new JLabel(""));
+					nbSpaces++;
+					continue;
+				}
+
 			}
+
 		}
 	}
 }

@@ -46,6 +46,7 @@ public class AbaloneLauncher {
 
 			gui.run();
 		}
+		System.out.println(game);
 		return;
 
 		/*do {

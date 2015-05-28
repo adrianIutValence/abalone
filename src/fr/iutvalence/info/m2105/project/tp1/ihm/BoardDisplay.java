@@ -6,6 +6,8 @@ package fr.iutvalence.info.m2105.project.tp1.ihm;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -58,13 +60,13 @@ public class BoardDisplay extends JPanel {
 									new Position(yRange + 1,
 											(xRange + yRange) / 2 - 1))
 							.getColor() == Color.BLACK)
-						this.add(new JLabel("B"));
+						this.add(new JButton(new ImageIcon("img/black.png")));
 					else if (board
 							.getMarble(
 									new Position(yRange + 1,
 											(xRange + yRange) / 2 - 1))
 							.getColor() == Color.WHITE)
-						this.add(new JLabel("W"));
+						this.add(new JButton(new ImageIcon("img/white.png")));
 					nbBoules++;
 					continue;
 				}
@@ -99,13 +101,13 @@ public class BoardDisplay extends JPanel {
 									new Position(yRange + 1,
 											(xRange + yRange) / 2 - 1))
 							.getColor() == Color.BLACK)
-						this.add(new JLabel("B"));
+						this.add(new JButton(new ImageIcon("img/black.png")));
 					else if (board
 							.getMarble(
 									new Position(yRange + 1,
 											(xRange + yRange) / 2 - 1))
 							.getColor() == Color.WHITE)
-						this.add(new JLabel("W"));
+						this.add(new JButton(new ImageIcon("../img/white.png")));
 					nbBoules++;
 					continue;
 				}

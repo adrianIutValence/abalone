@@ -46,15 +46,16 @@ public class AbaloneLauncher {
 
 			gui.run();
 		}
-		System.out.println(game);
-		return;
 
-		/*do {
+		do {
 			// Display game
 			if (keyPlay) {
 				System.out.println(game);
 			} else {
-				gui.refresh();
+				if(turn % AbstractPlayer.PLAYERS_NUMBER == 0)
+					gui.setUserMessage("White players turn");
+				else
+					gui.setUserMessage("Black players turn");
 			}
 
 			do {
@@ -71,7 +72,7 @@ public class AbaloneLauncher {
 			turn++;
 
 			winner = game.won(players);
-		} while (winner == null);*/
+		} while (winner == null);
 
 	}
 }
